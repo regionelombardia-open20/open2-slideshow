@@ -1,0 +1,95 @@
+<?php
+
+/**
+ * Lombardia Informatica S.p.A.
+ * OPEN 2.0
+ *
+ *
+ * @package    lispa\amos\slideshow
+ * @category   CategoryName
+ */
+
+namespace lispa\amos\slideshow\models\base;
+
+use lispa\amos\slideshow\AmosSlideshow;
+use yii\helpers\ArrayHelper;
+
+/**
+ * Class Slideshow
+ * @package lispa\amos\slideshow\models\base
+ *
+ * This is the base-model class for table "slideshow".
+ *
+ * @property integer $id
+ * @property string $name
+ * @property string $label
+ * @property string $description
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $deleted_at
+ * @property integer $created_by
+ * @property integer $updated_by
+ * @property integer $deleted_by
+ *
+ * @property \lispa\amos\slideshow\models\SlideshowRoute[] $slideshowRoutes
+ * @property \lispa\amos\slideshow\models\SlideshowPage[] $slideshowPages
+ */
+class Slideshow extends \lispa\amos\core\record\Record
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'slideshow';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['name'], 'required'],
+            [['description', 'label'], 'string'],
+            [['created_at', 'updated_at', 'deleted_at'], 'safe'],
+            [['created_by', 'updated_by', 'deleted_by'], 'integer'],
+            [['name'], 'string', 'max' => 255],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return ArrayHelper::merge(parent::attributeLabels(), [
+            'id' => AmosSlideshow::t('amosslideshow', 'ID'),
+            'name' => AmosSlideshow::t('amosslideshow', 'Titolo'),
+            'label' => AmosSlideshow::t('amosslideshow', 'Label'),
+            'description' => AmosSlideshow::t('amosslideshow', 'Descrizione'),
+            'created_at' => AmosSlideshow::t('amosslideshow', 'Created At'),
+            'updated_at' => AmosSlideshow::t('amosslideshow', 'Updated At'),
+            'deleted_at' => AmosSlideshow::t('amosslideshow', 'Deleted At'),
+            'created_by' => AmosSlideshow::t('amosslideshow', 'Created By'),
+            'updated_by' => AmosSlideshow::t('amosslideshow', 'Updated By'),
+            'deleted_by' => AmosSlideshow::t('amosslideshow', 'Deleted By'),
+        ]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSlideshowRoutes()
+    {
+        return $this->hasOne(\lispa\amos\slideshow\models\SlideshowRoute::className(), ['slideshow_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSlideshowPages()
+    {
+        return $this->hasMany(\lispa\amos\slideshow\models\SlideshowPage::className(), ['slideshow_id' => 'id']);
+    }
+}

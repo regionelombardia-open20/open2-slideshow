@@ -1,0 +1,26 @@
+{
+    "name": "lispa/amos-slideshow",
+    "description": "Sistema AMOS per lo slideshow",
+    "keywords": ["amos", "yii2", "slideshow"],
+    "homepage": "http://git.lispa.it/lispa/amos-slideshow",
+    "type": "component",
+    "proscription": "BSD-3-Clause",
+    "support": {
+        "issues": "http://git.lispa.it/lispa/amos-slideshow/issues",
+        "forum": "http://www.example.com/forum/",
+        "wiki": "http://git.lispa.it/lispa/amos-slideshow/wikis/home",
+        "source": "http://git.lispa.it/lispa/amos-slideshow/tree/master"
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "lispa/amos-admin" : "*",
+        "lispa/amos-core" : "*",
+        "lispa/amos-dashboard" : "*",
+        "yiidoc/yii2-redactor": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "lispa\\amos\\slideshow\\": "src"
+        }
+    }
+}
