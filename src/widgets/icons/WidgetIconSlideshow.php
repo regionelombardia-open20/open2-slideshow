@@ -23,21 +23,6 @@ use yii\helpers\ArrayHelper;
  */
 class WidgetIconSlideshow extends WidgetIcon
 {
-    public function getOptions()
-    {
-        $options = parent::getOptions();
-
-        //aggiunge all'oggetto container tutti i widgets recuperati dal controller del modulo
-        return ArrayHelper::merge($options, ["children" => $this->getWidgetsIcon()]);
-    }
-
-    public function getWidgetsIcon()
-    {
-        return AmosWidgets::find()
-            ->andWhere([
-                'child_of' => self::className()
-            ])->all();
-    }
 
     /**
      * @inheritdoc
@@ -48,18 +33,45 @@ class WidgetIconSlideshow extends WidgetIcon
 
         $this->setLabel(AmosSlideshow::tHtml('amosslideshow', 'Dashboard Slideshow'));
         $this->setDescription(AmosSlideshow::t('amosslideshow', 'Visualizza dashboard slideshow'));
-
         $this->setIcon('image');
-        //$this->setIconFramework('');
-
         $this->setUrl(Yii::$app->urlManager->createUrl(['/slideshow']));
         $this->setCode('SLIDESHOW');
         $this->setModuleName('slideshow');
         $this->setNamespace(__CLASS__);
 
-        $this->setClassSpan(ArrayHelper::merge($this->getClassSpan(), [
-            'bk-backgroundIcon',
-            'color-darkPrimary'
-        ]));
+        $this->setClassSpan(
+            ArrayHelper::merge(
+                $this->getClassSpan(),
+                [
+                    'bk-backgroundIcon',
+                    'color-darkPrimary'
+                ]
+            )
+        );
     }
+
+    /**
+     * Aggiunge all'oggetto container tutti i widgets recuperati dal controller del modulo
+     * 
+     * @return type
+     */
+    public function getOptions()
+    {
+        return ArrayHelper::merge(
+            parent::getOptions(),
+            ['children' => $this->getWidgetsIcon()]
+        );
+    }
+
+    /**
+     * 
+     * @return type
+     */
+    public function getWidgetsIcon()
+    {
+        return AmosWidgets::find()
+            ->andWhere(['child_of' => self::className()])
+            ->all();
+    }
+
 }

@@ -9,6 +9,8 @@
  * @category   CategoryName
  */
 
+use lispa\amos\core\utilities\ViewUtility;
+
 use lispa\amos\slideshow\AmosSlideshow;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -24,7 +26,6 @@ $this->params['breadcrumbs'][] = ['label' => AmosSlideshow::t('amosslideshow', '
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="slideshow-route-view col-xs-12">
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -32,18 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'route',
             'already_view',
             'slideshow_id',
-            [
-                'attribute' => 'created_at',
-                'format' => ['datetime', (isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
-            ],
-            [
-                'attribute' => 'updated_at',
-                'format' => ['datetime', (isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
-            ],
-            [
-                'attribute' => 'deleted_at',
-                'format' => ['datetime', (isset(Yii::$app->modules['datecontrol']['displaySettings']['datetime'])) ? Yii::$app->modules['datecontrol']['displaySettings']['datetime'] : 'd-m-Y H:i:s A'],
-            ],
+            ['attribute' => 'created_at', 'format' => ['datetime', ViewUtility::formatDateTime()]],
+            ['attribute' => 'updated_at', 'format' => ['datetime', ViewUtility::formatDateTime()]],
+            ['attribute' => 'deleted_at', 'format' => ['datetime', ViewUtility::formatDateTime()]],
             'created_by',
             'updated_by',
             'deleted_by',
