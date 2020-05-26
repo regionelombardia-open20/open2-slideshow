@@ -1,29 +1,29 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
-use lispa\amos\core\views\DataProviderView;
-use lispa\amos\slideshow\AmosSlideshow;
+use open20\amos\core\views\DataProviderView;
+use open20\amos\slideshow\AmosSlideshow;
 
 /**
  * @var yii\web\View $this
  * @var string $currentView
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var lispa\amos\slideshow\models\search\SlideshowPageSearch $model
+ * @var open20\amos\slideshow\models\search\SlideshowPageSearch $model
  */
 $this->title = AmosSlideshow::t('amosslideshow', 'Pagine');
 $this->params['breadcrumbs'][] = ['label' => AmosSlideshow::t('amosslideshow', 'Slideshow'), 'url' => '/slideshow'];
 $this->params['breadcrumbs'][] = ['label' => AmosSlideshow::t('amosslideshow', 'Elenco'), 'url' => ['/slideshow/slideshow/index']];
 if (null !== (filter_input(INPUT_GET, 'slideshowId'))) {
     $slideshowName = "";
-    $slideshow = lispa\amos\slideshow\models\Slideshow::findOne(filter_input(INPUT_GET, 'slideshowId'));
+    $slideshow = open20\amos\slideshow\models\Slideshow::findOne(filter_input(INPUT_GET, 'slideshowId'));
     if ($slideshow) {
         $slideshowName = $slideshow->name;
     }
@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = AmosSlideshow::t('amosslideshow', 'Pagine');
                     'label' => 'Slideshow'
                 ],
                 [
-                    'class' => 'lispa\amos\core\views\grid\ActionColumn',
+                    'class' => 'open20\amos\core\views\grid\ActionColumn',
                 ],
             ],
         ],

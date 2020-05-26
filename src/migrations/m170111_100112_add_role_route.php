@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
@@ -20,6 +20,7 @@ class m170111_100112_add_role_route extends Migration {
 
     /**
      * Use this instead of function up().
+     * @see \Yii\db\Migration::safeUp() for more info.
      */
     public function safeUp() {
 
@@ -40,6 +41,7 @@ class m170111_100112_add_role_route extends Migration {
 
     /**
      * Use this instead of function down().
+     * @see \Yii\db\Migration::safeDown() for more info.
      */
     public function safeDown() {
         echo "Nessun down previsto";

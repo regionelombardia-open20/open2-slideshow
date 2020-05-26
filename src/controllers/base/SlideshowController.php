@@ -1,24 +1,24 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow\controllers\base
+ * @package    open20\amos\slideshow\controllers\base
  * @category   CategoryName
  */
 
-namespace lispa\amos\slideshow\controllers\base;
+namespace open20\amos\slideshow\controllers\base;
 
-use lispa\amos\core\controllers\CrudController;
-use lispa\amos\core\helpers\Html;
-use lispa\amos\core\icons\AmosIcons;
-use lispa\amos\slideshow\AmosSlideshow;
-use lispa\amos\slideshow\models\search\SlideshowSearch;
-use lispa\amos\slideshow\models\Slideshow;
-use lispa\amos\slideshow\models\SlideshowRoute;
-use lispa\amos\slideshow\models\SlideshowUserflag;
+use open20\amos\core\controllers\CrudController;
+use open20\amos\core\helpers\Html;
+use open20\amos\core\icons\AmosIcons;
+use open20\amos\slideshow\AmosSlideshow;
+use open20\amos\slideshow\models\search\SlideshowSearch;
+use open20\amos\slideshow\models\Slideshow;
+use open20\amos\slideshow\models\SlideshowRoute;
+use open20\amos\slideshow\models\SlideshowUserflag;
 use Yii;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
@@ -28,9 +28,9 @@ use yii\web\NotFoundHttpException;
  *
  * SlideshowController implements the CRUD actions for Slideshow model.
  *
- * @property \lispa\amos\slideshow\models\Slideshow $model
+ * @property \open20\amos\slideshow\models\Slideshow $model
  *
- * @package lispa\amos\slideshow\controllers\base
+ * @package open20\amos\slideshow\controllers\base
  */
 class SlideshowController extends CrudController
 {
@@ -209,6 +209,10 @@ class SlideshowController extends CrudController
             if ($this->model->getSlideshowPages()->count()) {
                 Yii::$app->getSession()->addFlash('danger', AmosSlideshow::tHtml('amosslideshow', 'Elemento non cancellato per la presenza di pagine.'));
             } else {
+                $route = $this->model->slideshowRoutes;
+                if(!is_null($route)){
+                    $route->delete();
+                }
                 $this->model->delete();
                 if (!$this->model->hasErrors()) {
                     Yii::$app->getSession()->addFlash('success', AmosSlideshow::tHtml('amosslideshow', 'Elemento cancellato correttamente.'));

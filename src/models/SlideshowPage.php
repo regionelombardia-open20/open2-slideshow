@@ -1,23 +1,23 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
-namespace lispa\amos\slideshow\models;
+namespace open20\amos\slideshow\models;
 
 /**
  * Class SlideshowPage
- * @package lispa\amos\slideshow\models
+ * @package open20\amos\slideshow\models
  *
  * This is the model class for table "slideshow_pages".
  */
-class SlideshowPage extends \lispa\amos\slideshow\models\base\SlideshowPage
+class SlideshowPage extends \open20\amos\slideshow\models\base\SlideshowPage
 {
     public function representingColumn(){
         return [

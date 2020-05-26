@@ -1,25 +1,25 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
-namespace lispa\amos\slideshow;
+namespace open20\amos\slideshow;
 
-use lispa\amos\core\module\AmosModule;
-use lispa\amos\core\module\ModuleInterface;
-use lispa\amos\slideshow\widgets\icons\WidgetIconSlideshow;
-use lispa\amos\slideshow\widgets\icons\WidgetIconSlideshowConf;
+use open20\amos\core\module\AmosModule;
+use open20\amos\core\module\ModuleInterface;
+use open20\amos\slideshow\widgets\icons\WidgetIconSlideshow;
+use open20\amos\slideshow\widgets\icons\WidgetIconSlideshowConf;
 use Yii;
 
 /**
  * Class AmosSlideshow
- * @package lispa\amos\slideshow
+ * @package open20\amos\slideshow
  */
 class AmosSlideshow extends AmosModule implements ModuleInterface
 {
@@ -42,7 +42,7 @@ class AmosSlideshow extends AmosModule implements ModuleInterface
     {
         parent::init();
         
-        \Yii::setAlias('@lispa/amos/' . static::getModuleName() . '/controllers/', __DIR__ . '/controllers/');
+        \Yii::setAlias('@open20/amos/' . static::getModuleName() . '/controllers/', __DIR__ . '/controllers/');
         // initialize the module with the configuration loaded from config.php
         Yii::configure($this, require(__DIR__ . DIRECTORY_SEPARATOR . self::$CONFIG_FOLDER . DIRECTORY_SEPARATOR . 'config.php'));
     }

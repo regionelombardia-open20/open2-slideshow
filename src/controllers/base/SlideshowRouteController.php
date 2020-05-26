@@ -1,22 +1,22 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow\controllers\base
+ * @package    open20\amos\slideshow\controllers\base
  * @category   CategoryName
  */
 
-namespace lispa\amos\slideshow\controllers\base;
+namespace open20\amos\slideshow\controllers\base;
 
-use lispa\amos\core\controllers\CrudController;
-use lispa\amos\core\helpers\Html;
-use lispa\amos\core\icons\AmosIcons;
-use lispa\amos\slideshow\AmosSlideshow;
-use lispa\amos\slideshow\models\search\SlideshowRouteSearch;
-use lispa\amos\slideshow\models\SlideshowRoute;
+use open20\amos\core\controllers\CrudController;
+use open20\amos\core\helpers\Html;
+use open20\amos\core\icons\AmosIcons;
+use open20\amos\slideshow\AmosSlideshow;
+use open20\amos\slideshow\models\search\SlideshowRouteSearch;
+use open20\amos\slideshow\models\SlideshowRoute;
 use Yii;
 use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
@@ -26,9 +26,9 @@ use yii\web\NotFoundHttpException;
  *
  * SlideshowRouteController implements the CRUD actions for SlideshowRoute model.
  *
- * @property \lispa\amos\slideshow\models\SlideshowRoute $model
+ * @property \open20\amos\slideshow\models\SlideshowRoute $model
  *
- * @package lispa\amos\slideshow\controllers\base
+ * @package open20\amos\slideshow\controllers\base
  */
 class SlideshowRouteController extends CrudController
 {

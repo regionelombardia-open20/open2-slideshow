@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow\controllers
+ * @package    open20\amos\slideshow\controllers
  * @category   CategoryName
  */
 
-namespace lispa\amos\slideshow\controllers;
+namespace open20\amos\slideshow\controllers;
 
-use lispa\amos\slideshow\models\SlideshowRoute;
-use lispa\amos\slideshow\models\SlideshowUserflag;
+use open20\amos\slideshow\models\SlideshowRoute;
+use open20\amos\slideshow\models\SlideshowUserflag;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -20,11 +20,11 @@ use yii\helpers\Json;
 
 /**
  * Class SlideshowController
- * @package lispa\amos\slideshow\controllers
+ * @package open20\amos\slideshow\controllers
  *
  * This is the class for controller "SlideshowController".
  */
-class SlideshowController extends \lispa\amos\slideshow\controllers\base\SlideshowController
+class SlideshowController extends \open20\amos\slideshow\controllers\base\SlideshowController
 {
     /**
      * @inheritdoc

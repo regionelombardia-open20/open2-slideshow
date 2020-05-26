@@ -1,17 +1,17 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
-namespace lispa\amos\slideshow\models\base;
+namespace open20\amos\slideshow\models\base;
 
-use lispa\amos\slideshow\AmosSlideshow;
+use open20\amos\slideshow\AmosSlideshow;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -27,10 +27,10 @@ use yii\helpers\ArrayHelper;
  * @property integer $updated_by
  * @property integer $deleted_by
  *
- * @property \lispa\amos\slideshow\models\SlideshowRoute $slideshowRoute
- * @property \lispa\amos\core\user\User $user
+ * @property \open20\amos\slideshow\models\SlideshowRoute $slideshowRoute
+ * @property \open20\amos\core\user\User $user
  */
-class SlideshowUserflag extends \lispa\amos\core\record\Record
+class SlideshowUserflag extends \open20\amos\core\record\Record
 {
     /**
      * @inheritdoc
@@ -49,8 +49,8 @@ class SlideshowUserflag extends \lispa\amos\core\record\Record
             [['slideshow_route_id', 'user_id'], 'required'],
             [['slideshow_route_id', 'user_id', 'created_by', 'updated_by', 'deleted_by'], 'integer'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
-            [['slideshow_route_id'], 'exist', 'skipOnError' => true, 'targetClass' => \lispa\amos\slideshow\models\SlideshowRoute::className(), 'targetAttribute' => ['slideshow_route_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => \lispa\amos\core\user\User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['slideshow_route_id'], 'exist', 'skipOnError' => true, 'targetClass' => \open20\amos\slideshow\models\SlideshowRoute::className(), 'targetAttribute' => ['slideshow_route_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => \open20\amos\core\user\User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -77,7 +77,7 @@ class SlideshowUserflag extends \lispa\amos\core\record\Record
      */
     public function getSlideshowRoute()
     {
-        return $this->hasOne(\lispa\amos\slideshow\models\SlideshowRoute::className(), ['id' => 'slideshow_route_id']);
+        return $this->hasOne(\open20\amos\slideshow\models\SlideshowRoute::className(), ['id' => 'slideshow_route_id']);
     }
 
     /**
@@ -85,6 +85,6 @@ class SlideshowUserflag extends \lispa\amos\core\record\Record
      */
     public function getUser()
     {
-        return $this->hasOne(\lispa\amos\core\user\User::className(), ['id' => 'user_id']);
+        return $this->hasOne(\open20\amos\core\user\User::className(), ['id' => 'user_id']);
     }
 }

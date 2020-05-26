@@ -1,25 +1,25 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
-use lispa\amos\core\forms\ActiveForm;
-use lispa\amos\core\forms\CloseSaveButtonWidget;
-use lispa\amos\core\forms\CreatedUpdatedWidget;
-use lispa\amos\core\forms\RequiredFieldsTipWidget;
-use lispa\amos\core\forms\Tabs;
-use lispa\amos\core\forms\TextEditorWidget;
-use lispa\amos\slideshow\AmosSlideshow;
+use open20\amos\core\forms\ActiveForm;
+use open20\amos\core\forms\CloseSaveButtonWidget;
+use open20\amos\core\forms\CreatedUpdatedWidget;
+use open20\amos\core\forms\RequiredFieldsTipWidget;
+use open20\amos\core\forms\Tabs;
+use open20\amos\core\forms\TextEditorWidget;
+use open20\amos\slideshow\AmosSlideshow;
 
 /**
  * @var yii\web\View $this
- * @var lispa\amos\slideshow\models\SlideshowPage $model
+ * @var open20\amos\slideshow\models\SlideshowPage $model
  * @var yii\widgets\ActiveForm $form
  */
 

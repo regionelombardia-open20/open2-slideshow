@@ -1,21 +1,21 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
-use lispa\amos\core\views\DataProviderView;
-use lispa\amos\slideshow\AmosSlideshow;
+use open20\amos\core\views\DataProviderView;
+use open20\amos\slideshow\AmosSlideshow;
 
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var \lispa\amos\slideshow\models\search\SlideshowRouteSearch $model
+ * @var \open20\amos\slideshow\models\search\SlideshowRouteSearch $model
  */
 
 $this->title = AmosSlideshow::t('amosslideshow', 'Slideshow Route');
@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'updated_by', 
 //            'deleted_by', 
                 [
-                    'class' => 'lispa\amos\core\views\grid\ActionColumn',
+                    'class' => 'open20\amos\core\views\grid\ActionColumn',
                 ],
             ],
         ],

@@ -1,15 +1,15 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
-use lispa\amos\core\migration\AmosMigrationPermissions;
+use open20\amos\core\migration\AmosMigrationPermissions;
 use yii\rbac\Permission;
 
 class m161028_084814_add_slideshow_permissions extends AmosMigrationPermissions
@@ -146,14 +146,14 @@ class m161028_084814_add_slideshow_permissions extends AmosMigrationPermissions
     {
         return [
             [
-                'name' => \lispa\amos\slideshow\widgets\icons\WidgetIconSlideshow::className(),
+                'name' => \open20\amos\slideshow\widgets\icons\WidgetIconSlideshow::className(),
                 'type' => Permission::TYPE_PERMISSION,
                 'description' => 'Permesso per la dashboard del plugin degli slideshow',
                 'ruleName' => null,
                 'parent' => ['AMMINISTRATORE_SLIDESHOW']
             ],
             [
-                'name' => \lispa\amos\slideshow\widgets\icons\WidgetIconSlideshowConf::className(),
+                'name' => \open20\amos\slideshow\widgets\icons\WidgetIconSlideshowConf::className(),
                 'type' => Permission::TYPE_PERMISSION,
                 'description' => 'Permesso per il widget della lista degli slideshow',
                 'ruleName' => null,

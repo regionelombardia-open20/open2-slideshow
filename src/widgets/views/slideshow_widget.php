@@ -1,18 +1,18 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
 /**
- * @var \lispa\amos\slideshow\models\Slideshow $slideshow
+ * @var \open20\amos\slideshow\models\Slideshow $slideshow
  */
-use lispa\amos\slideshow\AmosSlideshow;
+use open20\amos\slideshow\AmosSlideshow;
 use yii\bootstrap\Modal;
 
 $this->registerJs('        
@@ -27,7 +27,6 @@ $this->registerJs('
                 value:route
             },
             success: function(result) { 
-                //console.log("ok");
             }
         });			
     });

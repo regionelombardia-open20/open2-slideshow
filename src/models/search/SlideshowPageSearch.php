@@ -1,25 +1,25 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
-namespace lispa\amos\slideshow\models\search;
+namespace open20\amos\slideshow\models\search;
 
-use lispa\amos\slideshow\models\SlideshowPage;
+use open20\amos\slideshow\models\SlideshowPage;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
  * Class SlideshowPageSearch
- * @package lispa\amos\slideshow\models\search
+ * @package open20\amos\slideshow\models\search
  *
- * SlideshowPageSearch represents the model behind the search form about `lispa\amos\slideshow\models\SlideshowPages`.
+ * SlideshowPageSearch represents the model behind the search form about `open20\amos\slideshow\models\SlideshowPages`.
  */
 class SlideshowPageSearch extends SlideshowPage
 {

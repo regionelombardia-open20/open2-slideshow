@@ -1,26 +1,26 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
-namespace lispa\amos\slideshow\widgets;
+namespace open20\amos\slideshow\widgets;
 
-use lispa\amos\slideshow\models\Slideshow;
+use open20\amos\slideshow\models\Slideshow;
 use yii\base\Widget;
 use yii\web\View;
-use lispa\amos\slideshow\assets\ModuleSlideshowAsset;
-use lispa\amos\slideshow\models\SlideshowRoute;
-use lispa\amos\slideshow\models\SlideshowUserflag;
+use open20\amos\slideshow\assets\ModuleSlideshowAsset;
+use open20\amos\slideshow\models\SlideshowRoute;
+use open20\amos\slideshow\models\SlideshowUserflag;
 
 /**
  * Class SlideshowWidget
- * @package lispa\amos\slideshow\forms
+ * @package open20\amos\slideshow\forms
  */
 class SlideshowWidget extends Widget {
 

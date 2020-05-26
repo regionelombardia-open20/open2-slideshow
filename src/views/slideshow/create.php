@@ -1,19 +1,19 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
 /**
  * @var yii\web\View $this
- * @var lispa\amos\slideshow\models\Slideshow $model
+ * @var open20\amos\slideshow\models\Slideshow $model
  */
-use lispa\amos\slideshow\AmosSlideshow;
+use open20\amos\slideshow\AmosSlideshow;
 
 $this->title = AmosSlideshow::t('amosslideshow', 'Crea');
 $this->params['breadcrumbs'][] = ['label' => AmosSlideshow::t('amosslideshow', 'Slideshow'), 'url' => ['/slideshow']];

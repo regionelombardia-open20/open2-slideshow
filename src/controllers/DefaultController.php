@@ -1,22 +1,22 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow\controllers
+ * @package    open20\amos\slideshow\controllers
  * @category   CategoryName
  */
 
-namespace lispa\amos\slideshow\controllers;
+namespace open20\amos\slideshow\controllers;
 
-use lispa\amos\dashboard\controllers\base\DashboardController;
+use open20\amos\dashboard\controllers\base\DashboardController;
 use yii\helpers\Url;
 
 /**
  * Class DefaultController
- * @package lispa\amos\slideshow\controllers
+ * @package open20\amos\slideshow\controllers
  */
 class DefaultController extends DashboardController
 {

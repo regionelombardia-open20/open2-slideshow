@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
-use lispa\amos\core\migration\AmosMigrationWidgets;
-use lispa\amos\dashboard\models\AmosWidgets;
+use open20\amos\core\migration\AmosMigrationWidgets;
+use open20\amos\dashboard\models\AmosWidgets;
 
 class m161028_130926_add_slideshow_widgets extends AmosMigrationWidgets
 {
@@ -23,16 +23,16 @@ class m161028_130926_add_slideshow_widgets extends AmosMigrationWidgets
     {
         $this->widgets = [
             [
-                'classname' => \lispa\amos\slideshow\widgets\icons\WidgetIconSlideshow::className(),
+                'classname' => \open20\amos\slideshow\widgets\icons\WidgetIconSlideshow::className(),
                 'type' => AmosWidgets::TYPE_ICON,
                 'module' => self::MODULE_NAME,
                 'status' => AmosWidgets::STATUS_ENABLED
             ],
             [
-                'classname' => \lispa\amos\slideshow\widgets\icons\WidgetIconSlideshowConf::className(),
+                'classname' => \open20\amos\slideshow\widgets\icons\WidgetIconSlideshowConf::className(),
                 'type' => AmosWidgets::TYPE_ICON,
                 'module' => self::MODULE_NAME,
-                'child_of' => lispa\amos\slideshow\widgets\icons\WidgetIconSlideshow::className(),
+                'child_of' => open20\amos\slideshow\widgets\icons\WidgetIconSlideshow::className(),
                 'status' => AmosWidgets::STATUS_ENABLED
             ],
         ];

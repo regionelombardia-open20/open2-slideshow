@@ -1,28 +1,28 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
-namespace lispa\amos\slideshow\models;
+namespace open20\amos\slideshow\models;
 
 use mdm\admin\models\Route;
 use yii\helpers\ArrayHelper;
-use lispa\amos\slideshow\AmosSlideshow;
+use open20\amos\slideshow\AmosSlideshow;
 use yii\db\Query;
 
 /**
  * Class SlideshowRoute
- * @package lispa\amos\slideshow\models
+ * @package open20\amos\slideshow\models
  *
  * This is the model class for table "slideshow_route".
  */
-class SlideshowRoute extends \lispa\amos\slideshow\models\base\SlideshowRoute {
+class SlideshowRoute extends \open20\amos\slideshow\models\base\SlideshowRoute {
 
     public function getRotte($slideshowId = NULL, $role = 'TUTTI') {
         $slideshowRoute = SlideshowRoute::find();

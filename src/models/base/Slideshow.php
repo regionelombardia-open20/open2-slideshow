@@ -1,22 +1,22 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
-namespace lispa\amos\slideshow\models\base;
+namespace open20\amos\slideshow\models\base;
 
-use lispa\amos\slideshow\AmosSlideshow;
+use open20\amos\slideshow\AmosSlideshow;
 use yii\helpers\ArrayHelper;
 
 /**
  * Class Slideshow
- * @package lispa\amos\slideshow\models\base
+ * @package open20\amos\slideshow\models\base
  *
  * This is the base-model class for table "slideshow".
  *
@@ -31,10 +31,10 @@ use yii\helpers\ArrayHelper;
  * @property integer $updated_by
  * @property integer $deleted_by
  *
- * @property \lispa\amos\slideshow\models\SlideshowRoute[] $slideshowRoutes
- * @property \lispa\amos\slideshow\models\SlideshowPage[] $slideshowPages
+ * @property \open20\amos\slideshow\models\SlideshowRoute[] $slideshowRoutes
+ * @property \open20\amos\slideshow\models\SlideshowPage[] $slideshowPages
  */
-class Slideshow extends \lispa\amos\core\record\Record
+class Slideshow extends \open20\amos\core\record\Record
 {
     /**
      * @inheritdoc
@@ -82,7 +82,7 @@ class Slideshow extends \lispa\amos\core\record\Record
      */
     public function getSlideshowRoutes()
     {
-        return $this->hasOne(\lispa\amos\slideshow\models\SlideshowRoute::className(), ['slideshow_id' => 'id']);
+        return $this->hasOne(\open20\amos\slideshow\models\SlideshowRoute::className(), ['slideshow_id' => 'id']);
     }
 
     /**
@@ -90,6 +90,6 @@ class Slideshow extends \lispa\amos\core\record\Record
      */
     public function getSlideshowPages()
     {
-        return $this->hasMany(\lispa\amos\slideshow\models\SlideshowPage::className(), ['slideshow_id' => 'id']);
+        return $this->hasMany(\open20\amos\slideshow\models\SlideshowPage::className(), ['slideshow_id' => 'id']);
     }
 }

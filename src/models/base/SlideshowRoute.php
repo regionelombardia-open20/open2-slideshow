@@ -1,22 +1,22 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
-namespace lispa\amos\slideshow\models\base;
+namespace open20\amos\slideshow\models\base;
 
-use lispa\amos\slideshow\AmosSlideshow;
+use open20\amos\slideshow\AmosSlideshow;
 use yii\helpers\ArrayHelper;
 
 /**
  * Class SlideshowRoute
- * @package lispa\amos\slideshow\models\base
+ * @package open20\amos\slideshow\models\base
  *
  * This is the base-model class for table "slideshow_route".
  *
@@ -32,9 +32,9 @@ use yii\helpers\ArrayHelper;
  * @property integer $updated_by
  * @property integer $deleted_by
  *
- * @property \lispa\amos\slideshow\models\Slideshow $slideshow
+ * @property \open20\amos\slideshow\models\Slideshow $slideshow
  */
-class SlideshowRoute extends \lispa\amos\core\record\Record
+class SlideshowRoute extends \open20\amos\core\record\Record
 {
     /**
      * @inheritdoc
@@ -54,7 +54,7 @@ class SlideshowRoute extends \lispa\amos\core\record\Record
             [['role'], 'string'],
             [['already_view', 'slideshow_id', 'created_by', 'updated_by', 'deleted_by'], 'integer'],
             [['route', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
-            [['slideshow_id'], 'exist', 'skipOnError' => true, 'targetClass' => \lispa\amos\slideshow\models\Slideshow::className(), 'targetAttribute' => ['slideshow_id' => 'id']],
+            [['slideshow_id'], 'exist', 'skipOnError' => true, 'targetClass' => \open20\amos\slideshow\models\Slideshow::className(), 'targetAttribute' => ['slideshow_id' => 'id']],
             [['role'], 'uniqueRoleAndRouteCheck'],
         ];
     }
@@ -96,6 +96,6 @@ class SlideshowRoute extends \lispa\amos\core\record\Record
      */
     public function getSlideshow()
     {
-        return $this->hasOne(\lispa\amos\slideshow\models\Slideshow::className(), ['id' => 'slideshow_id']);
+        return $this->hasOne(\open20\amos\slideshow\models\Slideshow::className(), ['id' => 'slideshow_id']);
     }
 }

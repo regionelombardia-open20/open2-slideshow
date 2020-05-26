@@ -1,24 +1,24 @@
 <?php
 
 /**
- * Lombardia Informatica S.p.A.
+ * Aria S.p.A.
  * OPEN 2.0
  *
  *
- * @package    lispa\amos\slideshow
+ * @package    open20\amos\slideshow
  * @category   CategoryName
  */
 
-use lispa\amos\core\utilities\ViewUtility;
+use open20\amos\core\utilities\ViewUtility;
 
-use lispa\amos\slideshow\AmosSlideshow;
+use open20\amos\slideshow\AmosSlideshow;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
 
 /**
  * @var yii\web\View $this
- * @var lispa\amos\slideshow\models\SlideshowRoute $model
+ * @var open20\amos\slideshow\models\SlideshowRoute $model
  */
 
 $this->title = $model->route;
