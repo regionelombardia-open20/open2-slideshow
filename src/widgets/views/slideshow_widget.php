@@ -112,4 +112,31 @@ if ($slideshow->getSlideshowPages()->count() && !empty($slideshow->slideshowRout
     <?php
     Modal::end();
 }
+
+
+
+
+$js = <<< JS
+
+// function on click to modal button close  
+// stop play youtube video and set default url into iframe
+
+$('button.close').click(function(){
+
+    var url;
+    // find all iframe into slide show carousel div 
+    var iframe_video = $('#introSlideshow').find('iframe');
+
+    // foreach iframe in to slide show carousel div, remove autoplay from youtube url
+    iframe_video.each(function(){
+
+        url = $(this).attr('src');
+        url = url.replace('?autoplay=1','')
+        $(this).attr('src', url);
+
+    });
+});
+JS;
+$this->registerJs($js);
+
 ?>

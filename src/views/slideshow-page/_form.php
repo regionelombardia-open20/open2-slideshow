@@ -46,7 +46,8 @@ use open20\amos\slideshow\AmosSlideshow;
             <?= $form->field($model, 'pageContent')->widget(TextEditorWidget::className(), [
                 'clientOptions' => [
                     'placeholder' => AmosSlideshow::t('amosslideshow', '#page_content_placeholder'),
-                    'lang' => substr(Yii::$app->language, 0, 2)
+                    'lang' => substr(Yii::$app->language, 0, 2),
+                    'extended_valid_elements' => 'iframe[*]',  
                 ]
             ]) ?>
         </div>
