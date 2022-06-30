@@ -13,7 +13,7 @@
  * @var \open20\amos\slideshow\models\Slideshow $slideshow
  */
 use open20\amos\slideshow\AmosSlideshow;
-use yii\bootstrap\Modal;
+use yii\bootstrap\Modal; 
 
 $this->registerJs('        
     $("#checkAmosSlideshow").on("click", function() {
@@ -48,6 +48,17 @@ if ($slideshow->getSlideshowPages()->count() && !empty($slideshow->slideshowRout
         $onceViewedSlideshows = Yii::$app->getSession()->get('onceViewedSlideshows');
         $onceViewedSlideshows[] = $slideshow->slideshowRoutes->route;
         //Yii::$app->getSession()->set('onceViewedSlideshows', $onceViewedSlideshows);//PROVVISORIO DA SISTEMARE
+    }else{
+        $this->registerJs('
+                $(function() {
+                var iframe = document.querySelector( "iframe");
+                if ( iframe ) {
+                var iframeSrc = iframe.src;
+                iframe.src = iframeSrc.replace("autoplay=1", "autoplay=0");	
+                }
+                });
+       
+        ', yii\web\View::POS_READY);
     }
 
     Modal::begin([
