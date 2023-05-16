@@ -64,6 +64,31 @@ class SlideshowPageController extends BaseSlideshowPageController
         ]);
         return $behaviors;
     }
+    
+    public function beforeAction($action) {
+        $urlLinkAll = '/slideshow/slideshow/index';
+        
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+
+        $this->view->params = [
+            'isGuest' => Yii::$app->user->isGuest,
+            'modelLabel' => 'Slideshow',
+            'titleSection' => AmosSlideshow::t('amosslideshow', 'Tutte le slides'),
+            'subTitleSection' => null,
+            'urlLinkAll' => $urlLinkAll,
+            'labelLinkAll' => AmosSlideshow::t('amosslideshow', 'Tutte le slides'),
+            'titleLinkAll' => $titleLinkAll,
+            'labelCreate' => AmosSlideshow::t('amosslideshow', 'Nuova'),
+            'titleCreate' => AmosSlideshow::t('amosslideshow', 'Aggiungi pagina'),
+            'labelManage' => AmosSlideshow::t('amosslideshow', 'Gestisci'),
+            'titleManage' => AmosSlideshow::t('amosslideshow', 'Gestisci pagina'),
+        ];
+
+        // other custom code here
+        return true;
+    }
 
     /**
      * Lists all SlideshowPage models.

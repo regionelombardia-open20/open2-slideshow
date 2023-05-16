@@ -51,7 +51,8 @@ class Slideshow extends \open20\amos\core\record\Record
     {
         return [
             [['name'], 'required'],
-            [['description', 'label'], 'string'],
+            [['description', 'label', 'eval_contoller_method'], 'string'],
+            [['default_not_show_again'], 'boolean'],
             [['created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['created_by', 'updated_by', 'deleted_by'], 'integer'],
             [['name'], 'string', 'max' => 255],
@@ -68,6 +69,8 @@ class Slideshow extends \open20\amos\core\record\Record
             'name' => AmosSlideshow::t('amosslideshow', 'Titolo'),
             'label' => AmosSlideshow::t('amosslideshow', 'Label'),
             'description' => AmosSlideshow::t('amosslideshow', 'Descrizione'),
+            'eval_contoller_method' => AmosSlideshow::t('amosslideshow', 'Metodo da valutare nel controller'),
+            'default_not_show_again' => AmosSlideshow::t('amosslideshow', 'Non visualizzare alla prossima visita (default)'),
             'created_at' => AmosSlideshow::t('amosslideshow', 'Created At'),
             'updated_at' => AmosSlideshow::t('amosslideshow', 'Updated At'),
             'deleted_at' => AmosSlideshow::t('amosslideshow', 'Deleted At'),

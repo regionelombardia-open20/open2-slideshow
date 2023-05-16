@@ -32,6 +32,8 @@ class AmosSlideshow extends AmosModule implements ModuleInterface
      */
     public $layout = 'main';
     public $name = 'Slideshow';
+    
+    public $customClassName = 'custom-modal-slideshow';
 
     public static function getModuleName()
     {

@@ -13,7 +13,11 @@
  * @var \open20\amos\slideshow\models\Slideshow $slideshow
  */
 use open20\amos\slideshow\AmosSlideshow;
-use yii\bootstrap\Modal; 
+use open20\amos\slideshow\widgets\Modal;
+
+$csrfTokenName = \Yii::$app->request->csrfParam;
+$csrfToken = \Yii::$app->request->csrfToken;
+$module     = AmosSlideshow::instance();
 
 $this->registerJs('        
     $("#checkAmosSlideshow").on("click", function() {
@@ -24,7 +28,8 @@ $this->registerJs('
             url: "/slideshow/slideshow/cambia",
             data: {
                 set:check,
-                value:route
+                value:route,'.
+                $csrfTokenName.': "'.$csrfToken.'"
             },
             success: function(result) { 
             }
@@ -44,6 +49,7 @@ if ($slideshow->getSlideshowPages()->count() && !empty($slideshow->slideshowRout
             $("#amos-slideshow").modal({
                 "show": true
             });
+            $("#checkAmosSlideshow").trigger("click");
         ', yii\web\View::POS_READY);
         $onceViewedSlideshows = Yii::$app->getSession()->get('onceViewedSlideshows');
         $onceViewedSlideshows[] = $slideshow->slideshowRoutes->route;
@@ -64,12 +70,13 @@ if ($slideshow->getSlideshowPages()->count() && !empty($slideshow->slideshowRout
     Modal::begin([
         'options' => [
             'id' => 'amos-slideshow',
-            'class' => 'modal-slideshow',
+            'class' => $module->customClassName . ' modal-slideshow',
             'tabindex' => 1, // important for Select2 to work properly,
             'data-backdrop' => 'static',
         ],
-        'header' => ($headerModal) ? $slideshow->name : '',
-        'footer' => '<label for="checkAmosSlideshow"><input type="checkbox" name="check" id="checkAmosSlideshow" value="' . $slideshow->slideshowRoutes->id . '" ' . (($flag) ? 'checked' : '') . '/>' . AmosSlideshow::t('amosslideshow', 'Non visualizzare alla prossima visita') . '</label>',
+        'size' => Modal::SIZE_LARGE ,
+        'title' => ($headerModal) ? $slideshow->name : '',
+        'footer' => '<label for="checkAmosSlideshow"><input type="checkbox" name="check" id="checkAmosSlideshow" value="' . $slideshow->slideshowRoutes->id . '" ' . ((!$default_not_show_again) ? 'checked' : '') . '/>' . AmosSlideshow::t('amosslideshow', 'Non visualizzare alla prossima visita') . '</label>',
         //'toggleButton' => ['label' => (strlen($slideshow->label)) ? $slideshow->label : 'Apri slideshow', 'class' => 'btn btn-success'/* , 'style' => 'display:none;' */],
     ]);
     ?>
@@ -82,7 +89,7 @@ if ($slideshow->getSlideshowPages()->count() && !empty($slideshow->slideshowRout
             $inds = 0;
             foreach ($slideshow->getSlideshowPages()->orderBy('ordinal')->asArray()->all() as $pageContent):
                 ?>
-                <div class="item<?= ($inds == 0) ? ' active' : '' ?>">
+                <div class="item carousel-item<?= ($inds == 0) ? ' active' : '' ?>">
                     <?= ($header !== NULL) ? $this->render($header) : '' ?>
                     <!--<div class="amosSlideshow">-->
                         <?= $pageContent['pageContent'] ?>

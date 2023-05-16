@@ -55,7 +55,7 @@ class SlideshowRoute extends \open20\amos\core\record\Record
             [['already_view', 'slideshow_id', 'created_by', 'updated_by', 'deleted_by'], 'integer'],
             [['route', 'created_at', 'updated_at', 'deleted_at'], 'safe'],
             [['slideshow_id'], 'exist', 'skipOnError' => true, 'targetClass' => \open20\amos\slideshow\models\Slideshow::className(), 'targetAttribute' => ['slideshow_id' => 'id']],
-            [['role'], 'uniqueRoleAndRouteCheck'],
+            //[['role'], 'uniqueRoleAndRouteCheck'],
         ];
     }
 

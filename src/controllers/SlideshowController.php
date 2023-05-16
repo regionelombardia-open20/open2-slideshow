@@ -11,8 +11,10 @@
 
 namespace open20\amos\slideshow\controllers;
 
+use open20\amos\slideshow\AmosSlideshow;
 use open20\amos\slideshow\models\SlideshowRoute;
 use open20\amos\slideshow\models\SlideshowUserflag;
+use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
@@ -55,17 +57,45 @@ class SlideshowController extends \open20\amos\slideshow\controllers\base\Slides
         return $behaviors;
     }
 
+    public function beforeAction($action) {
+        $urlLinkAll = null;
+        
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+
+        $this->view->params = [
+            'isGuest' => Yii::$app->user->isGuest,
+            'modelLabel' => 'Slideshow',
+            'titleSection' => AmosSlideshow::t('amosslideshow', 'Tutte le slides'),
+            'subTitleSection' => null,
+            'urlLinkAll' => $urlLinkAll,
+            'labelLinkAll' => AmosSlideshow::t('amosslideshow', 'Tutte le slides'),
+            'titleLinkAll' => $titleLinkAll,
+            'labelCreate' => AmosSlideshow::t('amosslideshow', 'Nuova'),
+            'titleCreate' => AmosSlideshow::t('amosslideshow', 'Aggiungi slide'),
+            'labelManage' => AmosSlideshow::t('amosslideshow', 'Gestisci'),
+            'titleManage' => AmosSlideshow::t('amosslideshow', 'Gestisci slide'),
+            'urlCreate' => '/slideshow/slideshow/create',
+            'urlManage' => '#',
+            //'hideCreate' => true,
+        ];
+
+        // other custom code here
+        return true;
+    }
+    
     /**
      * @return bool
      */
     public function actionCambia()
     {
-        if (\Yii::$app->request->isAjax) {
-            if (!\Yii::$app->getUser()->isGuest) {
-                $data = \Yii::$app->request->post();
+        if (Yii::$app->request->isAjax) {
+            if (!Yii::$app->getUser()->isGuest) {
+                $data = Yii::$app->request->post();
                 if (isset($data['set']) && $data['set'] == 'true') {
                     $routeId = $data['value'];
-                    $userId = \Yii::$app->getUser()->getId();
+                    $userId = Yii::$app->getUser()->getId();
                     $slideshowUserflag = SlideshowUserflag::findOne(['user_id' => $userId, 'slideshow_route_id' => $routeId]);
                     if (!$slideshowUserflag) {
                         $slideshowUserflag = new SlideshowUserflag();
@@ -75,7 +105,7 @@ class SlideshowController extends \open20\amos\slideshow\controllers\base\Slides
                     }
                 } else {
                     $routeId = $data['value'];
-                    $userId = \Yii::$app->getUser()->getId();
+                    $userId = Yii::$app->getUser()->getId();
                     $slideshowUserflag = SlideshowUserflag::deleteAll(['user_id' => $userId, 'slideshow_route_id' => $routeId]);
                 }
             }

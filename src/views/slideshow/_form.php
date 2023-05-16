@@ -8,6 +8,7 @@
  * @package    open20\amos\slideshow
  * @category   CategoryName
  */
+
 use open20\amos\core\forms\ActiveForm;
 use open20\amos\core\forms\CloseSaveButtonWidget;
 use open20\amos\core\forms\CreatedUpdatedWidget;
@@ -24,9 +25,8 @@ use kartik\widgets\Select2;
 
 <div class="slideshow-form col-xs-12">
 
-    <?php $form       = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(); ?>
 
-    <?php $this->beginBlock('generale'); ?>
     <div class="row">
         <div class="col-lg-6 col-sm-6">
 
@@ -38,9 +38,19 @@ use kartik\widgets\Select2;
         </div>
     </div>
     <div class="row">
+        <div class="col-lg-6 col-sm-6">
+
+            <?= $form->field($model, 'eval_contoller_method')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-6 col-sm-6">
+
+            <?= $form->field($model, 'default_not_show_again')->dropdownList([0 => 'Non selezionato', 1 => 'Selezionato']) ?>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-12 col-sm-12">
 
-            <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+            <?= $form->field($model, 'description')->textarea(['rows' => 4]) ?>
         </div>
     </div>
     <div class="row">
@@ -48,48 +58,24 @@ use kartik\widgets\Select2;
             <?=
             $form->field($route, 'role')->widget(Select2::classname(),
                 [
-                'data' => $route->getAllRoles(),
-                'options' => ['placeholder' => AmosSlideshow::t('amosslideshow',
+                    'data' => $route->getAllRoles(),
+                    'options' => ['placeholder' => AmosSlideshow::t('amosslideshow',
                         'Selezionare i ruoli che vedranno lo slideshow ...'),
-                    'id' => 'role-id'],
-                'pluginOptions' => [
-                    'allowClear' => true
-                ],
-            ]);
+                        'id' => 'role-id'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]);
             ?>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-9 col-sm-8">
-            <?=
-            $form->field($route, 'route')->widget(Select2::classname(),
-                [
-                'data' => $route->getRotte(($model->isNewRecord) ? '' : $model->id),
-                'options' => ['placeholder' => AmosSlideshow::t('amosslideshow', 'Seleziona ...')],
-                'pluginOptions' => [
-                    'allowClear' => true
-                ],
-            ]);
-            ?>
-            <?php /*
-              $form->field($route, 'route')->widget(DepDrop::classname(), [
-              'type' => DepDrop::TYPE_SELECT2,
-              'data' => ($model->isNewRecord ? [] : ['id' => '/tag', 'name' => '/tag']),
-              'options' => ['id' => 'route-id', 'disabled' => FALSE],
-              'select2Options' => ['pluginOptions' => ['allowClear' => true]],
-              'pluginOptions' => [
-              'depends' => [(FALSE) ?: 'role-id'],
-              'placeholder' => [AmosSlideshow::t('amosslideshow', 'Seleziona ...')],
-              'url' => Url::to(['/slideshow/slideshow/route-by-role']),
-              'initialize' => true,
-              'params' => ['route-id'],
-              ],
-              ]); */
-            ?>
+            <?= $form->field($route, 'route')->textInput(['maxlength' => true]) ?>
         </div>
         <div class="col-lg-3 col-sm-4">
 
-<?= $form->field($route, 'already_view')->dropdownList([0 => 'NO', 1 => 'SI']) ?>
+            <?= $form->field($route, 'already_view')->dropdownList([0 => 'NO', 1 => 'SI']) ?>
         </div>
     </div>
     <div class="row">
@@ -97,29 +83,11 @@ use kartik\widgets\Select2;
     </div>
 
     <div class="clearfix"></div>
-    <?php $this->endBlock('generale'); ?>
 
-    <?php
-    $itemsTab[] = [
-        'label' => AmosSlideshow::tHtml('amosslideshow', 'Generale '),
-        'content' => $this->blocks['generale'],
-    ];
-    ?>
-    <div class="row">
-        <div class="col-xs-12">
-
-            <?=
-            Tabs::widget([
-                'encodeLabels' => false,
-                'items' => $itemsTab
-            ]);
-            ?>
-        </div>
-    </div>
     <div class="col-xs-12 note_asterisk nop">
         <p>I campi <span class="red">*</span> sono obbligatori.</p>
     </div>
     <?= CreatedUpdatedWidget::widget(['model' => $model]) ?>
     <?= CloseSaveButtonWidget::widget(['model' => $model]); ?>
-<?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 </div>
