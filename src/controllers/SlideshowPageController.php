@@ -67,6 +67,7 @@ class SlideshowPageController extends BaseSlideshowPageController
     
     public function beforeAction($action) {
         $urlLinkAll = '/slideshow/slideshow/index';
+        $titleLinkAll = AmosSlideshow::t('amosslideshow', 'Visualizza la lista di tutti gli slideshow');
         
         if (!parent::beforeAction($action)) {
             return false;

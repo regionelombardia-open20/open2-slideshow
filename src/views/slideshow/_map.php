@@ -9,7 +9,7 @@
  * @category   CategoryName
  */
 
-use open20\amos\documenti\AmosSlideshow;
+use open20\amos\slideshow\AmosSlideshow;
 
 /*
  * Personalizzare a piacimento la vista

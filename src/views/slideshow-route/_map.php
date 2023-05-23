@@ -10,7 +10,8 @@
  */
 
 use open20\amos\core\helpers\Html;
-    
+use open20\amos\slideshow\AmosSlideshow;
+
 /*
  * Personalizzare a piacimento la vista
  * $model è il model legato alla tabella del db

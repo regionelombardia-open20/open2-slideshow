@@ -14,6 +14,8 @@
  * $model è il model legato alla tabella del db
  * $buttons sono i tasti del template standard {view}{update}{delete}
  */
+
+use open20\amos\slideshow\AmosSlideshow;
 ?>
 
 <div class="listview-container">

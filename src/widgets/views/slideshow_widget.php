@@ -24,6 +24,13 @@ if (class_exists('app\modules\cms\base\DefaultController')) {
     $useDesign = false;
 }
 
+if (class_exists('open20\cms\dashboard\controllers\D1Controller')) {
+    $useDesign = ((\Yii::$app->controller->id . '/'. \Yii::$app->controller->action->id  == 'd1/index') ? true : false);
+    /** pezza temp */
+} else {
+    $useDesign = false;
+}
+
 if (!$useDesign) {
     ModuleSlideshowAsset::register($this);
 }
@@ -91,7 +98,7 @@ if ($slideshow->getSlideshowPages()->count() && !empty($slideshow->slideshowRout
         ],
         'size' => Modal::SIZE_LARGE,
         'title' => ($headerModal) ? $slideshow->name : '',
-        'footer' => (\Yii::$app->user->isGuest ? '' : '<label for="checkAmosSlideshow"><input type="checkbox" name="check" id="checkAmosSlideshow" value="' . $slideshow->slideshowRoutes->id . '" ' . ((!$default_not_show_again) ? 'checked' : '') . '/>' . AmosSlideshow::t('amosslideshow', 'Non visualizzare più') . '</label>'),
+        'footer' => (\Yii::$app->user->isGuest ? '' : '<label for="checkAmosSlideshow" style="display:flex;margin-left:auto;font-weight:normal;justify-content:flex-end;"><input style="margin-right:5px;" type="checkbox" name="check" id="checkAmosSlideshow" value="' . $slideshow->slideshowRoutes->id . '" ' . ((!$default_not_show_again) ? 'checked' : '') . '/>' . AmosSlideshow::t('amosslideshow', 'Non visualizzare più') . '</label>'),
         //'toggleButton' => ['label' => (strlen($slideshow->label)) ? $slideshow->label : 'Apri slideshow', 'class' => 'btn btn-success'/* , 'style' => 'display:none;' */],
     ]);
 ?>
@@ -121,10 +128,10 @@ if ($slideshow->getSlideshowPages()->count() && !empty($slideshow->slideshowRout
             <!-- Controls -->
             <?php if ($slideshow->getSlideshowPages()->count() > 1) { ?>
                 <a class="left carousel-control" href="#introSlideshow" data-slide="prev" title="<?= AmosSlideshow::t('amosslideshow', 'slide precedente') ?>">
-                    <span class="glyphicon glyphicon-chevron-left"></span><span class="sr-only"><?= AmosSlideshow::t('amosslideshow', 'Prev') ?></span>
+                    <span class="mdi mdi-chevron-left"></span><span class="sr-only"><?= AmosSlideshow::t('amosslideshow', 'Prev') ?></span>
                 </a>
                 <a class="right carousel-control" href="#introSlideshow" data-slide="next" title="<?= AmosSlideshow::t('amosslideshow', 'slide successiva') ?>">
-                    <span class="glyphicon glyphicon-chevron-right"></span><span class="sr-only"><?= AmosSlideshow::t('amosslideshow', 'Next') ?></span>
+                    <span class="mdi mdi-chevron-right"></span><span class="sr-only"><?= AmosSlideshow::t('amosslideshow', 'Next') ?></span>
                 </a>
             <?php } ?>
 

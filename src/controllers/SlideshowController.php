@@ -59,6 +59,7 @@ class SlideshowController extends \open20\amos\slideshow\controllers\base\Slides
 
     public function beforeAction($action) {
         $urlLinkAll = null;
+        $titleLinkAll = '';
         
         if (!parent::beforeAction($action)) {
             return false;
