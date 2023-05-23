@@ -43,7 +43,7 @@ return [
     'Label' => 'Label',
     'Next' => 'Next',
     'Non ci sono widgets selezionati per questa dashboard' => 'No widgets selected for this dashboard',
-    'Non visualizzare alla prossima visita' => 'Do not show next time',
+    'Non visualizzare più' => 'Do not show next time',
     'Ordine' => 'Order',
     '#page_content_placeholder' => 'Type the page content',
     'Pagine' => 'Pages',

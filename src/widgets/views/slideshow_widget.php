@@ -12,14 +12,28 @@
 /**
  * @var \open20\amos\slideshow\models\Slideshow $slideshow
  */
+
 use open20\amos\slideshow\AmosSlideshow;
 use open20\amos\slideshow\widgets\Modal;
+use open20\amos\slideshow\assets\ModuleSlideshowAsset;
+
+
+if (class_exists('app\modules\cms\base\DefaultController')) {
+    $useDesign = ((\Yii::$app->controller instanceof \app\modules\cms\base\DefaultController) ? true : false);
+} else {
+    $useDesign = false;
+}
+
+if (!$useDesign) {
+    ModuleSlideshowAsset::register($this);
+}
 
 $csrfTokenName = \Yii::$app->request->csrfParam;
 $csrfToken = \Yii::$app->request->csrfToken;
 $module     = AmosSlideshow::instance();
 
-$this->registerJs('        
+if (!\Yii::$app->user->isGuest) {
+    $this->registerJs('        
     $("#checkAmosSlideshow").on("click", function() {
         var check = $(this).is(":checked");     
         var route = $(this).val();
@@ -28,14 +42,15 @@ $this->registerJs('
             url: "/slideshow/slideshow/cambia",
             data: {
                 set:check,
-                value:route,'.
-                $csrfTokenName.': "'.$csrfToken.'"
+                value:route,' .
+        $csrfTokenName . ': "' . $csrfToken . '"
             },
             success: function(result) { 
             }
         });			
     });
  ', \yii\web\View::POS_READY);
+}
 
 if ($slideshow->getSlideshowPages()->count() && !empty($slideshow->slideshowRoutes->route) && $route == $slideshow->slideshowRoutes->route) {
     $headerModal = \Yii::$app->getModule('slideshow')->params['headerModal'];
@@ -54,7 +69,7 @@ if ($slideshow->getSlideshowPages()->count() && !empty($slideshow->slideshowRout
         $onceViewedSlideshows = Yii::$app->getSession()->get('onceViewedSlideshows');
         $onceViewedSlideshows[] = $slideshow->slideshowRoutes->route;
         //Yii::$app->getSession()->set('onceViewedSlideshows', $onceViewedSlideshows);//PROVVISORIO DA SISTEMARE
-    }else{
+    } else {
         $this->registerJs('
                 $(function() {
                 var iframe = document.querySelector( "iframe");
@@ -74,60 +89,97 @@ if ($slideshow->getSlideshowPages()->count() && !empty($slideshow->slideshowRout
             'tabindex' => 1, // important for Select2 to work properly,
             'data-backdrop' => 'static',
         ],
-        'size' => Modal::SIZE_LARGE ,
+        'size' => Modal::SIZE_LARGE,
         'title' => ($headerModal) ? $slideshow->name : '',
-        'footer' => '<label for="checkAmosSlideshow"><input type="checkbox" name="check" id="checkAmosSlideshow" value="' . $slideshow->slideshowRoutes->id . '" ' . ((!$default_not_show_again) ? 'checked' : '') . '/>' . AmosSlideshow::t('amosslideshow', 'Non visualizzare alla prossima visita') . '</label>',
+        'footer' => (\Yii::$app->user->isGuest ? '' : '<label for="checkAmosSlideshow"><input type="checkbox" name="check" id="checkAmosSlideshow" value="' . $slideshow->slideshowRoutes->id . '" ' . ((!$default_not_show_again) ? 'checked' : '') . '/>' . AmosSlideshow::t('amosslideshow', 'Non visualizzare più') . '</label>'),
         //'toggleButton' => ['label' => (strlen($slideshow->label)) ? $slideshow->label : 'Apri slideshow', 'class' => 'btn btn-success'/* , 'style' => 'display:none;' */],
     ]);
-    ?>
+?>
 
 
-    <div id="introSlideshow" class="carousel" data-ride="carousel" data-interval="false">
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-            <?php
-            $inds = 0;
-            foreach ($slideshow->getSlideshowPages()->orderBy('ordinal')->asArray()->all() as $pageContent):
-                ?>
-                <div class="item carousel-item<?= ($inds == 0) ? ' active' : '' ?>">
-                    <?= ($header !== NULL) ? $this->render($header) : '' ?>
-                    <!--<div class="amosSlideshow">-->
-                        <?= $pageContent['pageContent'] ?>
-                    <!--</div>-->
-                    <?= ($footer !== NULL) ? $this->render($footer) : '' ?>
-                </div>
+    <?php if (!$useDesign) : ?>
+        <div id="introSlideshow" class="carousel" data-ride="carousel" data-interval="false">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
                 <?php
-                $inds++;
-            endforeach;
-            ?>
+                $inds = 0;
+                foreach ($slideshow->getSlideshowPages()->orderBy('ordinal')->asArray()->all() as $pageContent) :
+                ?>
+                    <div class="item carousel-item<?= ($inds == 0) ? ' active' : '' ?>">
+                        <?= ($header !== NULL) ? $this->render($header) : '' ?>
+                        <!--<div class="amosSlideshow">-->
+                        <?= $pageContent['pageContent'] ?>
+                        <!--</div>-->
+                        <?= ($footer !== NULL) ? $this->render($footer) : '' ?>
+                    </div>
+                <?php
+                    $inds++;
+                endforeach;
+                ?>
+            </div>
+
+            <!-- Controls -->
+            <?php if ($slideshow->getSlideshowPages()->count() > 1) { ?>
+                <a class="left carousel-control" href="#introSlideshow" data-slide="prev" title="<?= AmosSlideshow::t('amosslideshow', 'slide precedente') ?>">
+                    <span class="glyphicon glyphicon-chevron-left"></span><span class="sr-only"><?= AmosSlideshow::t('amosslideshow', 'Prev') ?></span>
+                </a>
+                <a class="right carousel-control" href="#introSlideshow" data-slide="next" title="<?= AmosSlideshow::t('amosslideshow', 'slide successiva') ?>">
+                    <span class="glyphicon glyphicon-chevron-right"></span><span class="sr-only"><?= AmosSlideshow::t('amosslideshow', 'Next') ?></span>
+                </a>
+            <?php } ?>
+
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <?php
+                $ind = 0;
+                foreach ($slideshow->getSlideshowPages()->orderBy('ordinal')->asArray()->all() as $page) :
+                ?>
+                    <li data-target="#introSlideshow" data-slide-to="<?= $ind ?>" <?= ($ind == 0) ? 'class="active"' : '' ?>></li>
+                <?php
+                    $ind++;
+                endforeach;
+                ?>
+            </ol>
+
         </div>
 
-        <!-- Controls -->
-        <?php if ($slideshow->getSlideshowPages()->count() > 1) { ?>
-            <a class="left carousel-control" href="#introSlideshow" data-slide="prev" title="<?= AmosSlideshow::t('amosslideshow', 'slide precedente') ?>">
-                <span class="glyphicon glyphicon-chevron-left"></span><span class="sr-only"><?= AmosSlideshow::t('amosslideshow', 'Prev') ?></span>
-            </a>
-            <a class="right carousel-control" href="#introSlideshow" data-slide="next" title="<?= AmosSlideshow::t('amosslideshow', 'slide successiva') ?>">
-                <span class="glyphicon glyphicon-chevron-right"></span><span class="sr-only"><?= AmosSlideshow::t('amosslideshow', 'Next') ?></span>
-            </a>
-        <?php } ?>
+    <?php else : ?>
 
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <?php
-            $ind = 0;
-            foreach ($slideshow->getSlideshowPages()->orderBy('ordinal')->asArray()->all() as $page):
-                ?>
-                <li data-target="#introSlideshow" data-slide-to="<?= $ind ?>" <?= ($ind == 0) ? 'class="active"' : '' ?>></li>
-                <?php
-                $ind++;
-            endforeach;
-            ?>
-        </ol>
+        <div class="it-carousel-wrapper it-carousel-landscape-abstract-one-cols owl-carousel-design">
+            <div class="it-carousel-all owl-carousel owl-loaded owl-drag">
+                <div class="owl-stage-outer">
+                    <div class="owl-stage">
 
-    </div>
+                        <?php
+                        $inds = 0;
+                        foreach ($slideshow->getSlideshowPages()->orderBy('ordinal')->asArray()->all() as $pageContent) :
+                        ?>
+                            <div class="owl-item">
+                                <div class="it-single-slide-wrapper">
+                                    <?= ($header !== NULL) ? $this->render($header) : '' ?>
+                                    <?= $pageContent['pageContent'] ?>
+                                    <?= ($footer !== NULL) ? $this->render($footer) : '' ?>
+                                </div>
+                            </div>
+                        <?php
+                            $inds++;
+                        endforeach;
+                        ?>
+                    </div>
+                </div>
+                <?php if ($slideshow->getSlideshowPages()->count() > 1) { ?>
+                    <div class="owl-nav">
+                        <button type="button" role="presentation" class="owl-prev"><span class="mdi mdi-chevron-left"></span><span class="sr-only"><?= AmosSlideshow::t('amosslideshow', 'slide precedente') ?></span></button>
+                        <button type="button" role="presentation" class="owl-next"><span class="mdi mdi-chevron-right"></span><span class="sr-only"><?= AmosSlideshow::t('amosslideshow', 'slide successiva') ?></span></button>
+                    </div>
+                    <!-- dots are auto with BI -->
+                <?php } ?>
+            </div>
+        </div>
 
-    <?php
+    <?php endif; ?>
+
+<?php
     Modal::end();
 }
 

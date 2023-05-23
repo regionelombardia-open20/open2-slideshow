@@ -15,7 +15,6 @@ use open20\amos\slideshow\models\Slideshow;
 use yii\base\Widget;
 use yii\helpers\VarDumper;
 use yii\web\View;
-use open20\amos\slideshow\assets\ModuleSlideshowAsset;
 use open20\amos\slideshow\models\SlideshowRoute;
 use open20\amos\slideshow\models\SlideshowUserflag;
 
@@ -36,6 +35,12 @@ class SlideshowWidget extends Widget {
     public $footer;
 
     /**
+     * If set it displays the slideshow of this route
+     * @var type
+     */
+    public $route;
+
+    /**
      * @var Slideshow $slideshow Slideshow object
      */
     private $slideshow = null;
@@ -49,15 +54,14 @@ class SlideshowWidget extends Widget {
      * @inheritdoc
      */
     public function run() {
-        ModuleSlideshowAsset::register($this->getView());
         $this->setRoleUser();
-        $route = "/" . \Yii::$app->request->getPathInfo();
+        $route = (!empty($this->route) ? $this->route : "/" . \Yii::$app->request->getPathInfo());
         $idSlideshow = $this->hasSlideshow($route);
 
         if ($idSlideshow) {
-            $userId = \Yii::$app->getUser()->getId();
             $SlideshowRoute = SlideshowRoute::findOne(['slideshow_id' => $idSlideshow]);
-            $userFlag = ($SlideshowRoute) ? SlideshowUserflag::findOne(['slideshow_route_id' => $SlideshowRoute->id, 'user_id' => $userId]) : NULL;
+            $userId = (\Yii::$app->user->isGuest ? null : \Yii::$app->getUser()->getId());
+            $userFlag = ($SlideshowRoute && !empty($userId)) ? SlideshowUserflag::findOne(['slideshow_route_id' => $SlideshowRoute->id, 'user_id' => $userId]) : NULL;
             $flag = (empty($userFlag)) ? FALSE : TRUE;
 
             $default_not_show_again = $this->slideshow->default_not_show_again;
@@ -85,7 +89,7 @@ class SlideshowWidget extends Widget {
                             $evaluated_method = \Yii::$app->controller->$method();
                         }
                     }
-                    if($evaluated_method){
+                    if ($evaluated_method) {
                         return $this->slideshow->id;
                     }
                 }
@@ -95,10 +99,14 @@ class SlideshowWidget extends Widget {
     }
 
     public function setRoleUser() {
-        $roles = \Yii::$app->authManager->getRolesByUser(\Yii::$app->getUser()->getId());
-        $this->roleUser[] = 'TUTTI';
-        foreach ((array) $roles as $key => $value) {
-            $this->roleUser[] = $key;
+        if (\Yii::$app->user->isGuest) {
+            $this->roleUser[] = 'TUTTI';
+        } else {
+            $roles = \Yii::$app->authManager->getRolesByUser(\Yii::$app->getUser()->getId());
+            $this->roleUser[] = 'TUTTI';
+            foreach ((array) $roles as $key => $value) {
+                $this->roleUser[] = $key;
+            }
         }
     }
 

@@ -78,12 +78,12 @@ class SlideshowPageController extends BaseSlideshowPageController
             'titleSection' => AmosSlideshow::t('amosslideshow', 'Tutte le slides'),
             'subTitleSection' => null,
             'urlLinkAll' => $urlLinkAll,
-            'labelLinkAll' => AmosSlideshow::t('amosslideshow', 'Tutte le slides'),
+            'labelLinkAll' => AmosSlideshow::t('amosslideshow', 'Tutti gli slideshow'),
             'titleLinkAll' => $titleLinkAll,
             'labelCreate' => AmosSlideshow::t('amosslideshow', 'Nuova'),
-            'titleCreate' => AmosSlideshow::t('amosslideshow', 'Aggiungi pagina'),
+            'titleCreate' => AmosSlideshow::t('amosslideshow', 'Aggiungi slide'),
             'labelManage' => AmosSlideshow::t('amosslideshow', 'Gestisci'),
-            'titleManage' => AmosSlideshow::t('amosslideshow', 'Gestisci pagina'),
+            'titleManage' => AmosSlideshow::t('amosslideshow', 'Gestisci slide'),
         ];
 
         // other custom code here

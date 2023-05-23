@@ -43,7 +43,7 @@ return [
     'Label' => 'Etichetta',
     'Next' => 'Prossimo',
     'Non ci sono widgets selezionati per questa dashboard' => 'Non ci sono widgets selezionati per questa dashboard',
-    'Non visualizzare alla prossima visita' => 'Non visualizzare alla prossima visita',
+    'Non visualizzare più' => 'Non visualizzare più',
     'Ordine' => 'Ordine',
     '#page_content_placeholder' => 'Inserisci il contenuto della pagina',
     'Pagine' => 'Pagine',

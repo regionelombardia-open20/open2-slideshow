@@ -40,6 +40,11 @@ SLIDESHOW WIDGET
           border-color: @primary-color;
           &.active {
             background-color: @primary-color;
+            &:first-child{
+              &:last-child{
+                display: none;
+              }
+            }
           }
         }
       }
